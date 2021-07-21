@@ -1,0 +1,66 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #76d7c4;
+}
+
+.App {
+  font-family: sans-serif;
+  text-align: center;
+  width: 90%;
+  margin: auto;
+  padding: 2rem;
+}
+
+.flex-container {
+  display: flex;
+  flex-flow: column wrap;
+  align-content: center;
+  width: 90%;
+  margin: auto;
+}
+
+.return-label {
+  margin: 2rem;
+}
+
+.input-text {
+  margin: 1rem 2rem;
+  min-height: 35px;
+  padding: 1rem;
+  box-sizing: border-box;
+  border-radius: 1rem;
+  outline: none;
+  text-align: center;
+}
+
+button {
+  margin: 1rem;
+  padding: 10px;
+  cursor: pointer;
+  border: 2px solid black;
+  border-radius: 1rem;
+}
+
+.table-container {
+  text-align: center;
+  width: 90%;
+  margin: auto;
+}
+
+table {
+  border-collapse: collapse;
+  border: 1px solid;
+}
+
+td {
+  border: 1px solid;
+  width: 65px;
+  height: 30px;
+}
+
+.alert {
+  color: red;
+  text-align: center;
+  padding: 1rem;
+}

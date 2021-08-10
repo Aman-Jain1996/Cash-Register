@@ -12,6 +12,7 @@ export default function App() {
     if (e.target.name === "bill") setBill(e.target.value);
     else setAmount(e.target.value);
     setError("");
+    document.querySelector("#returnChangeDiv").style.display = "none";
   }
 
   function onResetHandler(e) {
@@ -78,7 +79,9 @@ export default function App() {
       </div>
       <div className="alert">{error}</div>
       <div id="returnChangeDiv">
-        <p className="return-para">Please return left amount as :</p>
+        <p className="return-para">
+          Please return left amount <strong>{amount - bill}</strong> as :
+        </p>
         <div className="table-container">
           <table>
             <thead>

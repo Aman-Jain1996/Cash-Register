@@ -21,71 +21,90 @@ export default function App() {
     setAmount("");
     setObject({});
     setError("");
+    document.querySelector("#returnChangeDiv").style.display = "none";
+    document.querySelector("#amount-div").style.display = "none";
+    document.querySelector("#next-button").style.display = "block";
   }
 
-  function showInput() {
-    if (bill === "") return "false";
+  function clickHandler() {
+    let billAmount = Number(document.querySelector("#billAmount").value);
+    if (billAmount === "" || billAmount < 1) {
+      setError("Bill Amount must be greater than 1");
+    } else {
+      document.querySelector("#amount-div").style.display = "block";
+      document.querySelector("#next-button").style.display = "none";
+    }
   }
 
   function onClickHandler() {
-    if (amount === "" || bill === "")
-      setError('Bill and Amount can"t be empty');
+    if (amount === "") setError(`Amount given can't be empty`);
     else if (Number(amount) < Number(bill))
       setError("Amount given must be greater than bill amount");
-    else if (isNaN(bill) || isNaN(amount))
-      setError("Amount and bill fields must be entered with number");
-    else setObject(cashCalculator(amount - bill));
+    else {
+      setObject(cashCalculator(amount - bill));
+      document.querySelector("#returnChangeDiv").style.display = "block";
+    }
   }
 
   return (
     <div className="App">
       <h1>Cash Register</h1>
       <div className="flex-container">
-        <label>Enter the bill Amount:</label>
+        <label htmlFor="billAmount">Enter the bill Amount:</label>
         <input
+          id="billAmount"
           className="input-text"
-          type="text"
+          type="number"
           name="bill"
+          min="1"
           onChange={onChangeHandler}
         />
-        <label>Enter the Amount given by user:</label>
+        <button id="next-button" onClick={clickHandler}>
+          Next
+        </button>
+      </div>
+      <div id="amount-div">
+        <p>Enter the Amount given by user:</p>
         <input
           className="input-text"
-          type="text"
+          type="number"
           name="amount"
           onChange={onChangeHandler}
-          disabled={showInput()}
         />
+        <div>
+          <button onClick={onClickHandler}>Check Return Money</button>
+          <button onClick={onResetHandler}>Reset Fields</button>
+        </div>
       </div>
-      <button onClick={onClickHandler}>Check Return Money</button>
-      <button onClick={onResetHandler}>Reset Fields</button>
       <div className="alert">{error}</div>
-      <label className="return-label">Please return left amount as :</label>
-      <div className="table-container">
-        <table>
-          <thead>
-            <tr>
-              <td>₹ 2000</td>
-              <td>₹ 500</td>
-              <td>₹ 100</td>
-              <td>₹ 20</td>
-              <td>₹ 10</td>
-              <td>₹ 5</td>
-              <td>₹ 1</td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{object[2000]}</td>
-              <td>{object[500]}</td>
-              <td>{object[100]}</td>
-              <td>{object[20]}</td>
-              <td>{object[10]}</td>
-              <td>{object[5]}</td>
-              <td>{object[1]}</td>
-            </tr>
-          </tbody>
-        </table>
+      <div id="returnChangeDiv">
+        <p className="return-para">Please return left amount as :</p>
+        <div className="table-container">
+          <table>
+            <thead>
+              <tr>
+                <td>₹ 2000</td>
+                <td>₹ 500</td>
+                <td>₹ 100</td>
+                <td>₹ 20</td>
+                <td>₹ 10</td>
+                <td>₹ 5</td>
+                <td>₹ 1</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{object[2000]}</td>
+                <td>{object[500]}</td>
+                <td>{object[100]}</td>
+                <td>{object[20]}</td>
+                <td>{object[10]}</td>
+                <td>{object[5]}</td>
+                <td>{object[1]}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

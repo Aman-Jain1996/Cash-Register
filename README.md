@@ -2,7 +2,7 @@
 
 [Cash-Register](https://cash-register01.netlify.app/)
 
-__*This app is made using Javascript , HTML and CSS and hosted using Netlify.*__
+__*This app is made using Javascript , HTML, CSS and JS and hosted using Netlify.*__
 
 ## About
 
